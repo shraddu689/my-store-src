@@ -1,0 +1,24 @@
+<h3>Parent Component</h3>
+<input type="number" 
+       placeholder="Enter a number"
+       class="form-control"
+       [(ngModel)]="number1"/>
+<br/>
+<input type="number" 
+       placeholder="Enter a number"
+       class="form-control"
+       [(ngModel)]="number2"/>
+<br>
+<p>number1: {{number1}}</p>
+<p>number2: {{number2}}</p>
+
+<br>
+<app-my-result [num1]="number1" 
+                [num2]="number2"
+                (resultEmit)="getResult($event)"
+                (sample)="getSample($event)"></app-my-result>
+
+
+<!-- $event will contain the value that is emitted by the 
+child component, this $event is passed as the parameter to 
+the handler method of the eventemitter of the child -->

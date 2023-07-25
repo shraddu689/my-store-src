@@ -1,0 +1,48 @@
+<form #rf="ngForm" (ngSubmit)="rf.valid && submitForm()">
+    <div class="mb-3">
+      <label for="name" class="form-label">Name</label>
+      <input type="text" class="form-control" id="name" 
+        name="name" [(ngModel)]="reviewForm.name" required
+        #nameCtrl="ngModel">
+    </div>
+    <!-- {{nameCtrl.valid}} -->
+    <div class="alert alert-danger" 
+        *ngIf="nameCtrl.dirty && nameCtrl.invalid">
+      Name not provided
+    </div>
+    <div class="mb-3">
+      <label for="email" class="form-label">Email</label>
+      <input type="email" class="form-control" id="email"
+        name="email" [(ngModel)]="reviewForm.email" required
+        #emailCtrl="ngModel">
+    </div>
+    <div class="alert alert-danger" 
+        *ngIf="emailCtrl.dirty && emailCtrl.invalid">
+      Email not provided
+    </div>
+    <div class="mb-3">
+        <label for="rating" class="form-label">Rating</label>
+        <select class="form-select" id="rating" 
+          name="rating" [(ngModel)]="reviewForm.rating">
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+        </select>
+      </div>
+    <div class="mb-3">
+        <label for="description" class="form-label">Description</label>
+        <textarea id="description" class="form-control" rows="3"
+         name="description" [(ngModel)]="reviewForm.description"
+         #descCtrl="ngModel" required></textarea>
+    </div>
+    <div class="alert alert-danger" 
+        *ngIf="descCtrl.dirty && descCtrl.invalid">
+      Description not provided
+    </div>
+    {{rf.invalid}}
+    <button type="submit" class="btn btn-primary" 
+        [disabled]="rf.invalid">Submit</button>
+  </form>
+  {{reviewForm | json}}
